@@ -1,7 +1,7 @@
 Source: xbmc-audioencoder-flac
 Priority: extra
 Maintainer: Arne Morten Kvarving <spiff@xbmc.org>
-Build-Depends: debhelper (>= 8.0.0), cmake, xbmc-addon-dev, xbmc-audio-dev, libtool, libflac-dev
+Build-Depends: debhelper (>= 8.0.0), cmake, xbmc-addon-dev, automake, autoconf, libtool, libflac-dev, libogg-dev
 Standards-Version: 3.9.2
 Section: libs
 Homepage: http://xbmc.org
