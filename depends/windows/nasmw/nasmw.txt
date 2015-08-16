@@ -1,1 +1,1 @@
-nasmw http://www.nasm.us/pub/nasm/releasebuilds/2.11.06/nasm-2.11.06.zip
+nasmw http://mirrors.xbmc.org/build-deps/sources/nasm-2.11.06.zip
