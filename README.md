@@ -4,6 +4,7 @@ This is a [Kodi] (http://kodi.tv) FLAC audio encoder add-on.
 
 #### CI Testing
 [![Build Status](https://travis-ci.org/xbmc/audioencoder.flac.svg?branch=master)](https://travis-ci.org/xbmc/audioencoder.flac)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/xbmc/audioencoder.flac?svg=true)](https://ci.appveyor.com/project/xbmc/audioencoder-flac)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5120/badge.svg)](https://scan.coverity.com/projects/5120)
 
 ## Build instructions
