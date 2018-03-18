@@ -14,6 +14,8 @@ environment:
       CONFIG: Release
     - GENERATOR: "Visual Studio 14 Win64"
       CONFIG: Release
+    - GENERATOR: "Visual Studio 14 Win64"
+      CONFIG: Release
 
 build_script:
   - cd ..
