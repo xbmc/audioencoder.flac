@@ -8,7 +8,7 @@ check_symbol_exists(_AMD64_ "Windows.h" _X64_)
 check_symbol_exists(_ARM_ "Windows.h" _ARM_)
 
 add_definitions(-DPACKAGE_VERSION="1.3.2"
-                -DFLAC__NO_DLL -DFLAC__ALIGN_MALLOC_DATA -DFLAC__HAS_OGG -D_CRT_SECURE_NO_WARNINGS
+                -DFLAC__NO_DLL -DFLAC__ALIGN_MALLOC_DATA -DFLAC__HAS_OGG -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS
                 -Dfseeko=_fseeki64 -Dftello=_ftelli64) # work around a bug in the code that leads to "undefined reference errors"
 
 if(NOT _ARM_)
