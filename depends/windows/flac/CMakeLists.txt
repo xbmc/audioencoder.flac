@@ -2,6 +2,7 @@ project(flac)
 
 cmake_minimum_required(VERSION 2.8)
 
+find_program(NASM_COMPILER NAMES nasm nasmw)
 add_definitions(-DPACKAGE_VERSION="1.3.2"
                 -DFLAC__NO_DLL -DFLAC__ALIGN_MALLOC_DATA -DFLAC__HAS_OGG -DFLAC__HAS_X86INTRIN
                 -Dfseeko=_fseeki64 -Dftello=_ftelli64) # work around a bug in the code that leads to "undefined reference errors"
@@ -15,7 +16,7 @@ endif()
 # function to setup a custom command for a compiled assembler file
 function (build_nasm filename_we)
   add_custom_command(OUTPUT src/libFLAC/ia32/${filename_we}.obj
-                     COMMAND ${CMAKE_INSTALL_PREFIX}/bin/nasmw.exe -f win32 -d OBJ_FORMAT_win32 -i ${PROJECT_SOURCE_DIR}/src/libFLAC/ia32/ ${PROJECT_SOURCE_DIR}/src/libFLAC/ia32/${filename_we}.nasm -o ${PROJECT_BINARY_DIR}/src/libFLAC/ia32/${filename_we}.obj
+                     COMMAND ${NASM_COMPILER} -f win32 -d OBJ_FORMAT_win32 -i ${PROJECT_SOURCE_DIR}/src/libFLAC/ia32/ ${PROJECT_SOURCE_DIR}/src/libFLAC/ia32/${filename_we}.nasm -o ${PROJECT_BINARY_DIR}/src/libFLAC/ia32/${filename_we}.obj
                      WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}")
 endfunction (build_nasm filename)
 
