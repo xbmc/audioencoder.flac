@@ -25,7 +25,7 @@
 
 static const int SAMPLES_BUF_SIZE = 1024 * 2;
 
-class CEncoderFlac : public kodi::addon::CInstanceAudioEncoder
+class ATTRIBUTE_HIDDEN CEncoderFlac : public kodi::addon::CInstanceAudioEncoder
 {
 public:
   CEncoderFlac(KODI_HANDLE instance);
@@ -259,7 +259,7 @@ FLAC__StreamEncoderTellStatus CEncoderFlac::tell_callback_flac(const FLAC__Strea
 
 //------------------------------------------------------------------------------
 
-class CMyAddon : public kodi::addon::CAddonBase
+class ATTRIBUTE_HIDDEN CMyAddon : public kodi::addon::CAddonBase
 {
 public:
   CMyAddon() { }
