@@ -1,14 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(flac)
 
-include(TestCXXAcceptsFlag)
-
-CHECK_CXX_ACCEPTS_FLAG("-fPIC" HAVE_FPIC)
-if(HAVE_FPIC)
-  set(EXTRA_CFLAGS "CFLAGS=-fPIC -DPIC -O2")
-endif()
-
 include(ExternalProject)
+
 externalproject_add(flac
                     SOURCE_DIR ${CMAKE_SOURCE_DIR}
                     UPDATE_COMMAND autoreconf -vif
@@ -19,7 +13,7 @@ externalproject_add(flac
                       --disable-asm-optimizations
                       --enable-static
                       --disable-shared
-                      ${EXTRA_CFLAGS}
+                      --with-pic
                     INSTALL_COMMAND ""
                     BUILD_IN_SOURCE 1)
 
