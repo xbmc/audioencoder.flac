@@ -1,9 +1,9 @@
+cmake_minimum_required(VERSION 3.5)
 project(ogg)
 
-cmake_minimum_required(VERSION 2.8)
 include(CheckCCompilerFlag)
-
 include(ExternalProject)
+
 externalproject_add(ogg
                     SOURCE_DIR ${CMAKE_SOURCE_DIR}
                     UPDATE_COMMAND autoreconf -vif <SOURCE_DIR>

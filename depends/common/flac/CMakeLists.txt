@@ -1,6 +1,6 @@
+cmake_minimum_required(VERSION 3.5)
 project(flac)
 
-cmake_minimum_required(VERSION 2.8)
 include(TestCXXAcceptsFlag)
 
 CHECK_CXX_ACCEPTS_FLAG("-fPIC" HAVE_FPIC)
