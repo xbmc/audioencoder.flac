@@ -7,16 +7,15 @@
 
 find_package(PkgConfig)
 if(PKG_CONFIG_FOUND)
-  pkg_check_modules (OGG ogg)
-  list(APPEND OGG_INCLUDE_DIRS ${OGG_INCLUDEDIR})
+  pkg_check_modules(PC_OGG ogg QUIET)
 endif()
 
-if(NOT OGG_FOUND)
-  find_path(OGG_INCLUDE_DIRS ogg/ogg.h)
-  find_library(OGG_LIBRARIES ogg)
-endif()
+find_path(OGG_INCLUDE_DIRS ogg/ogg.h
+                           PATHS ${PC_OGG_INCLUDEDIR})
+find_library(OGG_LIBRARIES ogg
+                           PATHS ${PC_OGG_LIBDIR})
 
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(Ogg DEFAULT_MSG OGG_INCLUDE_DIRS OGG_LIBRARIES)
+find_package_handle_standard_args(Ogg REQUIRED_VARS OGG_INCLUDE_DIRS OGG_LIBRARIES)
 
 mark_as_advanced(OGG_INCLUDE_DIRS OGG_LIBRARIES)

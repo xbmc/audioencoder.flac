@@ -7,16 +7,15 @@
 
 find_package(PkgConfig)
 if(PKG_CONFIG_FOUND)
-  pkg_check_modules (FLAC flac)
-  list(APPEND FLAC_INCLUDE_DIRS ${FLAC_INCLUDEDIR})
+  pkg_check_modules(PC_FLAC flac QUIET)
 endif()
 
-if(NOT FLAC_FOUND)
-  find_path(FLAC_INCLUDE_DIRS FLAC/stream_decoder.h)
-  find_library(FLAC_LIBRARIES NAMES FLAC libFLAC_static)
-endif()
+find_path(FLAC_INCLUDE_DIRS FLAC/stream_decoder.h
+                            PATHS ${PC_FLAC_INCLUDEDIR})
+find_library(FLAC_LIBRARIES NAMES FLAC libFLAC_static
+                            PATHS ${PC_FLAC_LIBDIR})
 
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(FLAC DEFAULT_MSG FLAC_INCLUDE_DIRS FLAC_LIBRARIES)
+find_package_handle_standard_args(FLAC REQUIRED_VARS FLAC_INCLUDE_DIRS FLAC_LIBRARIES)
 
 mark_as_advanced(FLAC_INCLUDE_DIRS FLAC_LIBRARIES)

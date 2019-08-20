@@ -1,6 +1,5 @@
+cmake_minimum_required(VERSION 3.5)
 project(flac)
-
-cmake_minimum_required(VERSION 2.8)
 
 add_definitions(-DPACKAGE_VERSION="1.3.2"
                 -DFLAC__NO_DLL -DFLAC__ALIGN_MALLOC_DATA -DFLAC__HAS_OGG -DFLAC__HAS_X86INTRIN
