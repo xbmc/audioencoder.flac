@@ -1,1 +1,1 @@
-nasmw http://mirrors.xbmc.org/build-deps/sources/nasm-2.11.06.zip
+nasmw http://mirrors.kodi.tv/build-deps/sources/nasm-2.14.02.tar.gz
