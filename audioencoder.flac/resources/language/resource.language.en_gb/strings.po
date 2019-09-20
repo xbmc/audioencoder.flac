@@ -15,3 +15,7 @@ msgstr ""
 msgctxt "#30000"
 msgid "Compression level"
 msgstr ""
+
+msgctxt "#30001"
+msgid "FLAC uses a compression level parameter that varies from 0 (fastest) to 8 (slowest). The compressed files are always perfect, lossless representations of the original data. Although the compression process involves a tradeoff between speed and size, the decoding process is always quite fast and not dependent on the level of compression."
+msgstr ""

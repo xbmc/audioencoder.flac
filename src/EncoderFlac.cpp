@@ -1,6 +1,6 @@
 /*
- *      Copyright (C) 2005-2013 Team XBMC
- *      http://xbmc.org
+ *      Copyright (C) 2005-2019 Team Kodi
+ *      http://kodi.tv
  *
  *  This Program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -13,7 +13,7 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with XBMC; see the file COPYING.  If not, see
+ *  along with Kodi; see the file COPYING.  If not, see
  *  <http://www.gnu.org/licenses/>.
  *
  */
@@ -29,22 +29,22 @@ class ATTRIBUTE_HIDDEN CEncoderFlac : public kodi::addon::CInstanceAudioEncoder
 {
 public:
   CEncoderFlac(KODI_HANDLE instance);
-  virtual ~CEncoderFlac();
+  ~CEncoderFlac() override;
 
-  virtual bool Start(int inChannels,
-                     int inRate,
-                     int inBits,
-                     const std::string& title,
-                     const std::string& artist,
-                     const std::string& albumartist,
-                     const std::string& album,
-                     const std::string& year,
-                     const std::string& track,
-                     const std::string& genre,
-                     const std::string& comment,
-                     int trackLength) override;
-  virtual int Encode(int numBytesRead, const uint8_t* stream) override;
-  virtual bool Finish() override;
+  bool Start(int inChannels,
+             int inRate,
+             int inBits,
+             const std::string& title,
+             const std::string& artist,
+             const std::string& albumartist,
+             const std::string& album,
+             const std::string& year,
+             const std::string& track,
+             const std::string& genre,
+             const std::string& comment,
+             int trackLength) override;
+  int Encode(int numBytesRead, const uint8_t* stream) override;
+  bool Finish() override;
 
 private:
   static FLAC__StreamEncoderWriteStatus write_callback_flac(const FLAC__StreamEncoder *encoder,
@@ -262,8 +262,8 @@ FLAC__StreamEncoderTellStatus CEncoderFlac::tell_callback_flac(const FLAC__Strea
 class ATTRIBUTE_HIDDEN CMyAddon : public kodi::addon::CAddonBase
 {
 public:
-  CMyAddon() { }
-  virtual ADDON_STATUS CreateInstance(int instanceType, std::string instanceID, KODI_HANDLE instance, KODI_HANDLE& addonInstance) override;
+  CMyAddon() = default;
+  ADDON_STATUS CreateInstance(int instanceType, std::string instanceID, KODI_HANDLE instance, KODI_HANDLE& addonInstance) override;
 };
 
 ADDON_STATUS CMyAddon::CreateInstance(int instanceType, std::string instanceID, KODI_HANDLE instance, KODI_HANDLE& addonInstance)

@@ -23,7 +23,7 @@ endif()
 # function to setup a custom command for a compiled assembler file
 function (build_nasm filename_we)
   add_custom_command(OUTPUT src/libFLAC/ia32/${filename_we}.obj
-                     COMMAND ${CMAKE_INSTALL_PREFIX}/bin/nasm.exe -f win32 -d OBJ_FORMAT_win32 -i ${PROJECT_SOURCE_DIR}/src/libFLAC/ia32/ ${PROJECT_SOURCE_DIR}/src/libFLAC/ia32/${filename_we}.nasm -o ${PROJECT_BINARY_DIR}/src/libFLAC/ia32/${filename_we}.obj
+                     COMMAND ${CMAKE_INSTALL_PREFIX}/bin/nasmw.exe -f win32 -d OBJ_FORMAT_win32 -i ${PROJECT_SOURCE_DIR}/src/libFLAC/ia32/ ${PROJECT_SOURCE_DIR}/src/libFLAC/ia32/${filename_we}.nasm -o ${PROJECT_BINARY_DIR}/src/libFLAC/ia32/${filename_we}.obj
                      WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}")
 endfunction (build_nasm filename)
 

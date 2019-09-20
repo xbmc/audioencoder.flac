@@ -1,1 +1,1 @@
-nasmw http://www.nasm.us/pub/nasm/releasebuilds/2.12.02/win32/nasm-2.12.02-win32.zip
+nasmw http://mirrors.kodi.tv/build-deps/sources/nasm-2.14.02.tar.gz
