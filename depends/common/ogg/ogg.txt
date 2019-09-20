@@ -1,1 +1,1 @@
-ogg http://mirrors.xbmc.org/build-deps/sources/libogg-1.1.4.tar.gz
+ogg https://github.com/xiph/ogg/archive/v1.3.4.tar.gz
