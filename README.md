@@ -4,8 +4,9 @@ This is a [Kodi] (https://kodi.tv) FLAC audio encoder add-on.
 
 #### CI Testing
 [![Build Status](https://travis-ci.org/xbmc/audioencoder.flac.svg?branch=Matrix)](https://travis-ci.org/xbmc/audioencoder.flac/branches)
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/xbmc/audioencoder.flac?branch=Matrix&svg=true)](https://ci.appveyor.com/project/xbmc/audioencoder-flac?branch=Matrix)
+[![Build Status](https://dev.azure.com/teamkodi/binary-addons/_apis/build/status/xbmc.audioencoder.flac?branchName=Matrix)](https://dev.azure.com/teamkodi/binary-addons/_build/latest?definitionId=21&branchName=Matrix)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5120/badge.svg)](https://scan.coverity.com/projects/5120)
+<!--- [![Build Status](https://ci.appveyor.com/api/projects/status/github/xbmc/audioencoder.flac?branch=Matrix&svg=true)](https://ci.appveyor.com/project/xbmc/audioencoder-flac?branch=Matrix) -->
 
 ## Build instructions
 
