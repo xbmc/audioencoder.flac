@@ -5,6 +5,7 @@ include(CheckSymbolExists)
 check_symbol_exists(_X86_ "Windows.h" _X86_)
 check_symbol_exists(_AMD64_ "Windows.h" _X64_)
 check_symbol_exists(_ARM_ "Windows.h" _ARM_)
+check_symbol_exists(_ARM64_ "Windows.h" _ARM64_)
 
 add_definitions(-DPACKAGE_VERSION="1.3.2"
                 -DFLAC__NO_DLL -DFLAC__ALIGN_MALLOC_DATA -DFLAC__HAS_OGG -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS
@@ -18,6 +19,10 @@ if(_X86_)
   add_definitions(-DFLAC__CPU_IA32 -DFLAC__HAS_NASM)
 elseif(_X64_)
   add_definitions(-DENABLE_64_BIT_WORDS -DFLAC__CPU_X86_64)
+elseif(_ARM64_)
+  add_definitions(-DENABLE_64_BIT_WORDS -DFLAC__NO_ASM -DFLAC__CPU_UNKNOWN)
+elseif(_ARM_)
+  add_definitions(-DFLAC__NO_ASM -DFLAC__CPU_UNKNOWN)
 endif()
 
 # function to setup a custom command for a compiled assembler file
