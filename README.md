@@ -3,6 +3,7 @@
 This is a [Kodi] (https://kodi.tv) FLAC audio encoder add-on.
 
 #### CI Testing
+[![License: GPL-2.0-or-later](https://img.shields.io/badge/License-GPL%20v2+-blue.svg)](LICENSE.md)
 [![Build Status](https://travis-ci.org/xbmc/audioencoder.flac.svg?branch=Matrix)](https://travis-ci.org/xbmc/audioencoder.flac/branches)
 [![Build Status](https://dev.azure.com/teamkodi/binary-addons/_apis/build/status/xbmc.audioencoder.flac?branchName=Matrix)](https://dev.azure.com/teamkodi/binary-addons/_build/latest?definitionId=21&branchName=Matrix)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5120/badge.svg)](https://scan.coverity.com/projects/5120)
