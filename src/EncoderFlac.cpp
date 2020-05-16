@@ -15,7 +15,7 @@ static const int SAMPLES_BUF_SIZE = 1024 * 2;
 class ATTRIBUTE_HIDDEN CEncoderFlac : public kodi::addon::CInstanceAudioEncoder
 {
 public:
-  CEncoderFlac(KODI_HANDLE instance);
+  CEncoderFlac(KODI_HANDLE instance, const std::string& version);
   ~CEncoderFlac() override;
 
   bool Start(int inChannels,
@@ -54,8 +54,8 @@ private:
   FLAC__int32           m_samplesBuf[SAMPLES_BUF_SIZE];
 };
 
-CEncoderFlac::CEncoderFlac(KODI_HANDLE instance)
-  : CInstanceAudioEncoder(instance),
+CEncoderFlac::CEncoderFlac(KODI_HANDLE instance, const std::string& version)
+  : CInstanceAudioEncoder(instance, version),
     m_tellPos(0)
 {
   m_metadata[0] = nullptr;
@@ -250,12 +250,12 @@ class ATTRIBUTE_HIDDEN CMyAddon : public kodi::addon::CAddonBase
 {
 public:
   CMyAddon() = default;
-  ADDON_STATUS CreateInstance(int instanceType, std::string instanceID, KODI_HANDLE instance, KODI_HANDLE& addonInstance) override;
+  ADDON_STATUS CreateInstance(int instanceType, const std::string& instanceID, KODI_HANDLE instance, const std::string& version, KODI_HANDLE& addonInstance) override;
 };
 
-ADDON_STATUS CMyAddon::CreateInstance(int instanceType, std::string instanceID, KODI_HANDLE instance, KODI_HANDLE& addonInstance)
+ADDON_STATUS CMyAddon::CreateInstance(int instanceType, const std::string& instanceID, KODI_HANDLE instance, const std::string& version, KODI_HANDLE& addonInstance)
 {
-  addonInstance = new CEncoderFlac(instance);
+  addonInstance = new CEncoderFlac(instance, version);
   return ADDON_STATUS_OK;
 }
 
