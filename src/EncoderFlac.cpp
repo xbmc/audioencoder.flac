@@ -1,21 +1,8 @@
 /*
- *      Copyright (C) 2005-2020 Team Kodi
- *      http://kodi.tv
+ *  Copyright (C) 2005-2020 Team Kodi (https://kodi.tv)
  *
- *  This Program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2, or (at your option)
- *  any later version.
- *
- *  This Program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with Kodi; see the file COPYING.  If not, see
- *  <http://www.gnu.org/licenses/>.
- *
+ *  SPDX-License-Identifier: GPL-2.0-or-later
+ *  See LICENSE.md for more information.
  */
 
 #include <FLAC/stream_encoder.h>
@@ -28,7 +15,7 @@ static const int SAMPLES_BUF_SIZE = 1024 * 2;
 class ATTRIBUTE_HIDDEN CEncoderFlac : public kodi::addon::CInstanceAudioEncoder
 {
 public:
-  CEncoderFlac(KODI_HANDLE instance);
+  CEncoderFlac(KODI_HANDLE instance, const std::string& version);
   ~CEncoderFlac() override;
 
   bool Start(int inChannels,
@@ -67,8 +54,8 @@ private:
   FLAC__int32           m_samplesBuf[SAMPLES_BUF_SIZE];
 };
 
-CEncoderFlac::CEncoderFlac(KODI_HANDLE instance)
-  : CInstanceAudioEncoder(instance),
+CEncoderFlac::CEncoderFlac(KODI_HANDLE instance, const std::string& version)
+  : CInstanceAudioEncoder(instance, version),
     m_tellPos(0)
 {
   m_metadata[0] = nullptr;
@@ -263,12 +250,12 @@ class ATTRIBUTE_HIDDEN CMyAddon : public kodi::addon::CAddonBase
 {
 public:
   CMyAddon() = default;
-  ADDON_STATUS CreateInstance(int instanceType, std::string instanceID, KODI_HANDLE instance, KODI_HANDLE& addonInstance) override;
+  ADDON_STATUS CreateInstance(int instanceType, const std::string& instanceID, KODI_HANDLE instance, const std::string& version, KODI_HANDLE& addonInstance) override;
 };
 
-ADDON_STATUS CMyAddon::CreateInstance(int instanceType, std::string instanceID, KODI_HANDLE instance, KODI_HANDLE& addonInstance)
+ADDON_STATUS CMyAddon::CreateInstance(int instanceType, const std::string& instanceID, KODI_HANDLE instance, const std::string& version, KODI_HANDLE& addonInstance)
 {
-  addonInstance = new CEncoderFlac(instance);
+  addonInstance = new CEncoderFlac(instance, version);
   return ADDON_STATUS_OK;
 }
 
