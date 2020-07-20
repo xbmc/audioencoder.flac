@@ -5,8 +5,8 @@
  *  See LICENSE.md for more information.
  */
 
-#include <FLAC/stream_encoder.h>
 #include <FLAC/metadata.h>
+#include <FLAC/stream_encoder.h>
 #include <kodi/addon-instance/AudioEncoder.h>
 #include <string.h>
 
@@ -34,29 +34,28 @@ public:
   bool Finish() override;
 
 private:
-  static FLAC__StreamEncoderWriteStatus write_callback_flac(const FLAC__StreamEncoder *encoder,
+  static FLAC__StreamEncoderWriteStatus write_callback_flac(const FLAC__StreamEncoder* encoder,
                                                             const FLAC__byte buffer[],
                                                             size_t bytes,
                                                             unsigned samples,
                                                             unsigned current_frame,
-                                                            void *client_data);
-  static FLAC__StreamEncoderSeekStatus seek_callback_flac(const FLAC__StreamEncoder *encoder,
+                                                            void* client_data);
+  static FLAC__StreamEncoderSeekStatus seek_callback_flac(const FLAC__StreamEncoder* encoder,
                                                           FLAC__uint64 absolute_byte_offset,
-                                                          void *client_data);
+                                                          void* client_data);
 
-  static FLAC__StreamEncoderTellStatus tell_callback_flac(const FLAC__StreamEncoder *encoder,
-                                                          FLAC__uint64 *absolute_byte_offset,
-                                                          void *client_data);
+  static FLAC__StreamEncoderTellStatus tell_callback_flac(const FLAC__StreamEncoder* encoder,
+                                                          FLAC__uint64* absolute_byte_offset,
+                                                          void* client_data);
 
-  int64_t               m_tellPos; ///< position for tell() callback
-  FLAC__StreamEncoder*  m_encoder;
+  int64_t m_tellPos; ///< position for tell() callback
+  FLAC__StreamEncoder* m_encoder;
   FLAC__StreamMetadata* m_metadata[2];
-  FLAC__int32           m_samplesBuf[SAMPLES_BUF_SIZE];
+  FLAC__int32 m_samplesBuf[SAMPLES_BUF_SIZE];
 };
 
 CEncoderFlac::CEncoderFlac(KODI_HANDLE instance, const std::string& version)
-  : CInstanceAudioEncoder(instance, version),
-    m_tellPos(0)
+  : CInstanceAudioEncoder(instance, version), m_tellPos(0)
 {
   m_metadata[0] = nullptr;
   m_metadata[1] = nullptr;
@@ -79,11 +78,18 @@ CEncoderFlac::~CEncoderFlac()
     FLAC__stream_encoder_delete(m_encoder);
 }
 
-bool CEncoderFlac::Start(int inChannels, int inRate, int inBits,
-                         const std::string& title, const std::string& artist,
-                         const std::string& albumartist, const std::string& album,
-                         const std::string& year, const std::string& track, const std::string& genre,
-                         const std::string& comment, int trackLength)
+bool CEncoderFlac::Start(int inChannels,
+                         int inRate,
+                         int inBits,
+                         const std::string& title,
+                         const std::string& artist,
+                         const std::string& albumartist,
+                         const std::string& album,
+                         const std::string& year,
+                         const std::string& track,
+                         const std::string& genre,
+                         const std::string& comment,
+                         int trackLength)
 {
   if (!m_encoder)
     return false;
@@ -108,26 +114,33 @@ bool CEncoderFlac::Start(int inChannels, int inRate, int inBits,
   FLAC__StreamMetadata_VorbisComment_Entry entry;
   if (ok)
   {
-    if (
-      (m_metadata[0] = FLAC__metadata_object_new(FLAC__METADATA_TYPE_VORBIS_COMMENT)) == nullptr ||
-      (m_metadata[1] = FLAC__metadata_object_new(FLAC__METADATA_TYPE_PADDING)) == nullptr ||
-      !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "ARTIST", artist.c_str()) ||
-      !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
-      !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "ALBUM", album.c_str()) ||
-      !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
-      !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "ALBUMARTIST", albumartist.c_str()) ||
-      !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
-      !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "TITLE", title.c_str()) ||
-      !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
-      !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "GENRE", genre.c_str()) ||
-      !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
-      !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "TRACKNUMBER", track.c_str()) ||
-      !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
-      !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "DATE", year.c_str()) ||
-      !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
-      !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "COMMENT", comment.c_str()) ||
-      !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false)
-      )
+    if ((m_metadata[0] = FLAC__metadata_object_new(FLAC__METADATA_TYPE_VORBIS_COMMENT)) ==
+            nullptr ||
+        (m_metadata[1] = FLAC__metadata_object_new(FLAC__METADATA_TYPE_PADDING)) == nullptr ||
+        !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "ARTIST",
+                                                                        artist.c_str()) ||
+        !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
+        !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "ALBUM",
+                                                                        album.c_str()) ||
+        !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
+        !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "ALBUMARTIST",
+                                                                        albumartist.c_str()) ||
+        !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
+        !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "TITLE",
+                                                                        title.c_str()) ||
+        !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
+        !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "GENRE",
+                                                                        genre.c_str()) ||
+        !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
+        !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "TRACKNUMBER",
+                                                                        track.c_str()) ||
+        !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
+        !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "DATE",
+                                                                        year.c_str()) ||
+        !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false) ||
+        !FLAC__metadata_object_vorbiscomment_entry_from_name_value_pair(&entry, "COMMENT",
+                                                                        comment.c_str()) ||
+        !FLAC__metadata_object_vorbiscomment_append_comment(m_metadata[0], entry, false))
     {
       ok = false;
     }
@@ -142,7 +155,8 @@ bool CEncoderFlac::Start(int inChannels, int inRate, int inBits,
   if (ok)
   {
     FLAC__StreamEncoderInitStatus init_status;
-    init_status = FLAC__stream_encoder_init_stream(m_encoder, write_callback_flac, seek_callback_flac, tell_callback_flac, nullptr, this);
+    init_status = FLAC__stream_encoder_init_stream(
+        m_encoder, write_callback_flac, seek_callback_flac, tell_callback_flac, nullptr, this);
     if (init_status != FLAC__STREAM_ENCODER_INIT_STATUS_OK)
     {
       ok = false;
@@ -171,7 +185,8 @@ int CEncoderFlac::Encode(int numBytesRead, const uint8_t* stream)
     // convert the packed little-endian 16-bit PCM samples into an interleaved FLAC__int32 buffer for libFLAC
     for (int i = 0; i < nSamples; i++)
     { // inefficient but simple and works on big- or little-endian machines.
-      m_samplesBuf[i] = (FLAC__int32)(((FLAC__int16)(FLAC__int8)stream[2*i+1] << 8) | (FLAC__int16)stream[2*i]);
+      m_samplesBuf[i] = (FLAC__int32)(((FLAC__int16)(FLAC__int8)stream[2 * i + 1] << 8) |
+                                      (FLAC__int16)stream[2 * i]);
     }
 
     // feed samples to encoder
@@ -195,14 +210,14 @@ bool CEncoderFlac::Finish()
   return true;
 }
 
-FLAC__StreamEncoderWriteStatus CEncoderFlac::write_callback_flac(const FLAC__StreamEncoder *encoder,
+FLAC__StreamEncoderWriteStatus CEncoderFlac::write_callback_flac(const FLAC__StreamEncoder* encoder,
                                                                  const FLAC__byte buffer[],
                                                                  size_t bytes,
                                                                  unsigned samples,
                                                                  unsigned current_frame,
-                                                                 void *client_data)
+                                                                 void* client_data)
 {
-  CEncoderFlac *context = static_cast<CEncoderFlac*>(client_data);
+  CEncoderFlac* context = static_cast<CEncoderFlac*>(client_data);
   if (context)
   {
     if (context->Write(static_cast<const uint8_t*>(buffer), bytes) == bytes)
@@ -214,11 +229,11 @@ FLAC__StreamEncoderWriteStatus CEncoderFlac::write_callback_flac(const FLAC__Str
   return FLAC__STREAM_ENCODER_WRITE_STATUS_FATAL_ERROR;
 }
 
-FLAC__StreamEncoderSeekStatus CEncoderFlac::seek_callback_flac(const FLAC__StreamEncoder *encoder,
+FLAC__StreamEncoderSeekStatus CEncoderFlac::seek_callback_flac(const FLAC__StreamEncoder* encoder,
                                                                FLAC__uint64 absolute_byte_offset,
-                                                               void *client_data)
+                                                               void* client_data)
 {
-  CEncoderFlac *context = static_cast<CEncoderFlac*>(client_data);
+  CEncoderFlac* context = static_cast<CEncoderFlac*>(client_data);
   if (context)
   {
     if (context->Seek(static_cast<int64_t>(absolute_byte_offset), 0) == absolute_byte_offset)
@@ -230,12 +245,12 @@ FLAC__StreamEncoderSeekStatus CEncoderFlac::seek_callback_flac(const FLAC__Strea
   return FLAC__STREAM_ENCODER_SEEK_STATUS_ERROR;
 }
 
-FLAC__StreamEncoderTellStatus CEncoderFlac::tell_callback_flac(const FLAC__StreamEncoder *encoder,
-                                                               FLAC__uint64 *absolute_byte_offset,
-                                                               void *client_data)
+FLAC__StreamEncoderTellStatus CEncoderFlac::tell_callback_flac(const FLAC__StreamEncoder* encoder,
+                                                               FLAC__uint64* absolute_byte_offset,
+                                                               void* client_data)
 {
   // libFLAC will cope without a real tell callback
-  CEncoderFlac *context = static_cast<CEncoderFlac*>(client_data);
+  CEncoderFlac* context = static_cast<CEncoderFlac*>(client_data);
   if (context)
   {
     *absolute_byte_offset = context->m_tellPos;
@@ -250,10 +265,18 @@ class ATTRIBUTE_HIDDEN CMyAddon : public kodi::addon::CAddonBase
 {
 public:
   CMyAddon() = default;
-  ADDON_STATUS CreateInstance(int instanceType, const std::string& instanceID, KODI_HANDLE instance, const std::string& version, KODI_HANDLE& addonInstance) override;
+  ADDON_STATUS CreateInstance(int instanceType,
+                              const std::string& instanceID,
+                              KODI_HANDLE instance,
+                              const std::string& version,
+                              KODI_HANDLE& addonInstance) override;
 };
 
-ADDON_STATUS CMyAddon::CreateInstance(int instanceType, const std::string& instanceID, KODI_HANDLE instance, const std::string& version, KODI_HANDLE& addonInstance)
+ADDON_STATUS CMyAddon::CreateInstance(int instanceType,
+                                      const std::string& instanceID,
+                                      KODI_HANDLE instance,
+                                      const std::string& version,
+                                      KODI_HANDLE& addonInstance)
 {
   addonInstance = new CEncoderFlac(instance, version);
   return ADDON_STATUS_OK;
