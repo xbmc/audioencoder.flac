@@ -1,6 +1,6 @@
 --- a/configure.ac
 +++ b/configure.ac
-@@ -379,10 +379,6 @@
+@@ -420,10 +420,6 @@ AC_SUBST(LIB_CLOCK_GETTIME)
  # only matters for x86
  AC_CHECK_PROGS(NASM, nasm)
  AM_CONDITIONAL(FLaC__HAS_NASM, test -n "$NASM")
@@ -9,5 +9,6 @@
 -AH_TEMPLATE(FLAC__HAS_NASM, [define if you are compiling for x86 and have the NASM assembler])
 -fi
  
- if test "x$debug" = xtrue; then
- 	CPPFLAGS="-DDEBUG $CPPFLAGS"
+ dnl If debugging is disabled AND no CFLAGS/CXXFLAGS/CPPFLAGS/LDFLAGS
+ dnl are provided, we can set defaults to our liking
+

@@ -1,6 +1,6 @@
 # FLAC Audio Encoder add-on for Kodi
 
-This is a [Kodi] (https://kodi.tv) FLAC audio encoder add-on.
+This is a [Kodi](https://kodi.tv) FLAC audio encoder add-on.
 
 #### CI Testing
 [![License: GPL-2.0-or-later](https://img.shields.io/badge/License-GPL%20v2+-blue.svg)](LICENSE.md)
@@ -29,4 +29,4 @@ the add-on will be available as a system add-on.
 
 ##### Useful links
 
-* [Kodi's add-ons development support] (https://forum.kodi.tv/forumdisplay.php?fid=26)
+* [Kodi's add-ons development support](https://forum.kodi.tv/forumdisplay.php?fid=26)
