@@ -3,23 +3,17 @@ project(audioencoder.flac)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR})
 
-find_package(Kodi REQUIRED)
-find_package(FLAC REQUIRED)
-find_package(Ogg REQUIRED)
+include(ExternalProject)
 
-include_directories(${KODI_INCLUDE_DIR}/.. # Hack way with "/..", need bigger Kodi cmake rework to match right include ways (becomes done in future)
-                    ${FLAC_INCLUDE_DIRS}
-                    ${OGG_INCLUDE_DIRS})
+find_program(PATCH_EXECUTABLE NAMES patch)
 
-set(FLAC_SOURCES src/EncoderFlac.cpp)
-
-set(DEPLIBS ${FLAC_LIBRARIES} ${OGG_LIBRARIES})
-
-# on win32 we use a static version of libflac so we need to define FLAC__NO_DLL
-if(WIN32)
-  add_definitions(-DFLAC__NO_DLL)
+if(NOT PATCH_EXECUTABLE)
+  message(FATAL_ERROR "Missing patch command (we looked in ${CMAKE_PREFIX_PATH})")
 endif()
 
-build_addon(audioencoder.flac FLAC DEPLIBS)
-
-include(CPack)
+ExternalProject_Add(audioencoder.flac
+  URL https://github.com/xiph/ogg/archive/v1.3.4.tar.gz
+  URL_HASH SHA256=3da31a4eb31534b6f878914b7379b873c280e610649fe5c07935b3d137a828bc
+  PATCH_COMMAND ${PATCH_EXECUTABLE} -p1 -i ${CMAKE_CURRENT_SOURCE_DIR}/0001-fix-Mac-with-error-unknown-type-name-uint64_t.patch
+  INSTALL_COMMAND     ""
+)
