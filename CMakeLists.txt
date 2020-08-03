@@ -14,7 +14,7 @@ endif()
 set(PATCH_COMMAND)
 
 list(APPEND PATCH_COMMAND COMMAND ${CMAKE_COMMAND} -E echo ------------------> ${PATCH_PROGRAM} -p1 -i ${patch})
-list(APPEND PATCH_COMMAND COMMAND ${CMAKE_COMMAND} -E env ${PATCH_PROGRAM} -p1 -i ${CMAKE_CURRENT_SOURCE_DIR}/0001-fix-Mac-with-error-unknown-type-name-uint64_t.patch)
+list(APPEND PATCH_COMMAND COMMAND ${CMAKE_COMMAND} -E env ${PATCH_EXECUTABLE} -p1 -i ${CMAKE_CURRENT_SOURCE_DIR}/0001-fix-Mac-with-error-unknown-type-name-uint64_t.patch)
 
 ExternalProject_Add(audioencoder.flac
   URL https://github.com/xiph/ogg/archive/v1.3.4.tar.gz
