@@ -11,9 +11,14 @@ if(NOT PATCH_EXECUTABLE)
   message(FATAL_ERROR "Missing patch command (we looked in ${CMAKE_PREFIX_PATH})")
 endif()
 
+set(PATCH_COMMAND)
+
+list(APPEND PATCH_COMMAND COMMAND ${CMAKE_COMMAND} -E echo ------------------> ${PATCH_PROGRAM} -p1 -i ${patch})
+list(APPEND PATCH_COMMAND COMMAND ${CMAKE_COMMAND} -E env ${PATCH_PROGRAM} -p1 -i ${CMAKE_CURRENT_SOURCE_DIR}/0001-fix-Mac-with-error-unknown-type-name-uint64_t.patch)
+
 ExternalProject_Add(audioencoder.flac
   URL https://github.com/xiph/ogg/archive/v1.3.4.tar.gz
   URL_HASH SHA256=3da31a4eb31534b6f878914b7379b873c280e610649fe5c07935b3d137a828bc
-  PATCH_COMMAND COMMAND ${PATCH_EXECUTABLE} -p1 -i ${CMAKE_CURRENT_SOURCE_DIR}/0001-fix-Mac-with-error-unknown-type-name-uint64_t.patch
+  PATCH_COMMAND ${PATCH_COMMAND}
   INSTALL_COMMAND     ""
 )
