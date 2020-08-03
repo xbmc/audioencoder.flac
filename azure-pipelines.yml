@@ -20,24 +20,24 @@ jobs:
 
     strategy:
       matrix:
-        Win32:
-          GENERATOR: "Visual Studio 15 2017"
-          ARCHITECTURE: Win32
-          CONFIGURATION: Release
+#        Win32:
+#          GENERATOR: "Visual Studio 15 2017"
+#          ARCHITECTURE: Win32
+#          CONFIGURATION: Release
         Win64:
           GENERATOR: "Visual Studio 15 2017"
           ARCHITECTURE: x64
           CONFIGURATION: Release
-        Win64-UWP:
-          GENERATOR: "Visual Studio 15 2017"
-          ARCHITECTURE: x64
-          CONFIGURATION: Release
-          WINSTORE: -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION="10.0.17763.0"
-        ARM64-UWP:
-          GENERATOR: "Visual Studio 15 2017"
-          ARCHITECTURE: ARM64
-          CONFIGURATION: Release
-          WINSTORE: -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION="10.0.17763.0"
+#        Win64-UWP:
+#          GENERATOR: "Visual Studio 15 2017"
+#          ARCHITECTURE: x64
+#          CONFIGURATION: Release
+#          WINSTORE: -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION="10.0.17763.0"
+#        ARM64-UWP:
+#          GENERATOR: "Visual Studio 15 2017"
+#          ARCHITECTURE: ARM64
+#          CONFIGURATION: Release
+#          WINSTORE: -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION="10.0.17763.0"
 
     workspace:
       clean: all
