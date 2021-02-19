@@ -3,7 +3,7 @@
 This is a [Kodi] (http://kodi.tv) FLAC audio encoder add-on.
 
 #### CI Testing
-[![Build Status](https://travis-ci.org/xbmc/audioencoder.flac.svg?branch=master)](https://travis-ci.org/xbmc/audioencoder.flac)
+[![Build Status](https://travis-ci.com/xbmc/audioencoder.flac.svg?branch=Leia)](https://travis-ci.com/xbmc/audioencoder.flac/branches)
 [![Build Status](https://dev.azure.com/teamkodi/binary-addons/_apis/build/status/xbmc.audioencoder.flac?branchName=Leia)](https://dev.azure.com/teamkodi/binary-addons/_build/latest?definitionId=21&branchName=Leia)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5120/badge.svg)](https://scan.coverity.com/projects/5120)
 <!--- [![Build Status](https://ci.appveyor.com/api/projects/status/github/xbmc/audioencoder.flac?svg=true)](https://ci.appveyor.com/project/xbmc/audioencoder-flac) -->
