@@ -16,18 +16,12 @@ matrix:
     - os: linux
       dist: xenial
       sudo: required
-      compiler: gcc
-    - os: linux
-      dist: xenial
-      sudo: required
       compiler: clang
     - os: linux
       dist: bionic
       sudo: required
       compiler: gcc
       env: DEBIAN_BUILD=true
-    - os: osx
-      osx_image: xcode10.2
 
 before_install:
   - if [[ $DEBIAN_BUILD == true ]]; then sudo add-apt-repository -y ppa:team-xbmc/xbmc-nightly; fi
