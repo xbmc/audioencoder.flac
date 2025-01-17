@@ -17,7 +17,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.5.4\n"
 
-#, fuzzy
 msgctxt "Addon Summary"
 msgid "FLAC (Free Lossless Audio Codec) Encoder"
 msgstr "FLAC (Free Lossless Audio Codec) Encoder"
@@ -26,6 +25,7 @@ msgctxt "Addon Description"
 msgid "FLAC stands for Free Lossless Audio Codec, an audio format similar to MP3, but lossless, meaning that audio is compressed in FLAC without any loss in quality. This is similar to how Zip works, except with FLAC you will get much better compression because it is designed specifically for audio, and you can play back compressed FLAC files in your favorite player (or your car or home stereo, see supported devices) just like you would an MP3 file.[CR][CR]FLAC stands out as the fastest and most widely supported lossless audio codec, and the only one that at once is non-proprietary, is unencumbered by patents, has an open-source reference implementation, has a well documented format and API, and has several other independent implementations."
 msgstr "FLAC significa Free Lossless Audio Codec, um formato de áudio semelhante ao MP3, mas sem perdas, o que significa que o áudio é compactado em FLAC sem qualquer perda de qualidade. Isso é semelhante ao funcionamento do Zip, exceto que com o FLAC você obterá uma compactação muito melhor porque ele foi projetado especificamente para áudio, e você pode reproduzir arquivos FLAC compactados em seu player favorito (ou no seu carro ou aparelho de som doméstico, consulte os dispositivos suportados) apenas como se fosse um arquivo MP3.[CR][CR]FLAC se destaca como o codec de áudio sem perdas mais rápido e mais amplamente suportado, e o único que, ao mesmo tempo não é proprietário, não está onerado por patentes e possui uma referência de código aberto implementação, possui formato e API bem documentados e possui diversas outras implementações independentes."
 
+#, fuzzy
 msgctxt "#30000"
 msgid "Compression level"
 msgstr "Nível de compressão"
